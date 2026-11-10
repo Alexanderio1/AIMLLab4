@@ -1,0 +1,32 @@
+[
+  {
+    "sheet": "Sheet1",
+    "rows": 9568,
+    "same_multiset_as_Sheet1": true,
+    "used_for_training": true
+  },
+  {
+    "sheet": "Sheet2",
+    "rows": 9568,
+    "same_multiset_as_Sheet1": true,
+    "used_for_training": false
+  },
+  {
+    "sheet": "Sheet3",
+    "rows": 9568,
+    "same_multiset_as_Sheet1": true,
+    "used_for_training": false
+  },
+  {
+    "sheet": "Sheet4",
+    "rows": 9568,
+    "same_multiset_as_Sheet1": true,
+    "used_for_training": false
+  },
+  {
+    "sheet": "Sheet5",
+    "rows": 9568,
+    "same_multiset_as_Sheet1": true,
+    "used_for_training": false
+  }
+]

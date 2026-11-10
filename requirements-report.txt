@@ -1,0 +1,5 @@
+# Report generation only; inference/training dependencies stay in their lockfiles.
+nbformat==5.10.4
+nbclient==0.10.2
+nbconvert==7.16.6
+ipykernel==6.30.1

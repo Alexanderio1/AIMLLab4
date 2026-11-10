@@ -1,0 +1,18 @@
+{
+  "model_version": "2",
+  "run_id": "503b388935b047bca0fa775e9603e454",
+  "n_test": 1906,
+  "test_mae": 2.490805435466937,
+  "test_rmse": 3.601665807828915,
+  "test_r2": 0.9562152104106016,
+  "units": {
+    "AT": "degC",
+    "V": "cm Hg",
+    "AP": "mbar",
+    "RH": "%",
+    "PE": "MW",
+    "MAE": "MW",
+    "RMSE": "MW",
+    "R2": "dimensionless"
+  }
+}

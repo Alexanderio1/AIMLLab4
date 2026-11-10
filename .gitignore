@@ -6,3 +6,6 @@ mlflow-data/
 exported_models/*/model.joblib
 *.tar.gz
 *-results.zip
+
+.cache/
+.report-venv/

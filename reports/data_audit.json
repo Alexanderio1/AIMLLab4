@@ -1,0 +1,58 @@
+{
+  "source": "https://archive.ics.uci.edu/dataset/294/combined+cycle+power+plant",
+  "download_url": "https://archive.ics.uci.edu/static/public/294/combined+cycle+power+plant.zip",
+  "archive_sha256": "cc7b2a4977c0a44e8221c91d9a7e5746b3c68186cff7e5c61c70af6432b98c7a",
+  "workbook_sha256": "ccd490981db2a2f079963b3d9f0aea30d9d338900a0285428dfc6385396f4651",
+  "available_sheets": [
+    "Sheet1",
+    "Sheet2",
+    "Sheet3",
+    "Sheet4",
+    "Sheet5"
+  ],
+  "selected_sheet": "Sheet1",
+  "sheet_policy": "Only the first sheet is used; other sheets are not concatenated",
+  "original_rows": 9568,
+  "rows_after_deduplication": 9527,
+  "exact_duplicates_removed": 41,
+  "feature_ranges": {
+    "AT": {
+      "min": 1.81,
+      "max": 37.11
+    },
+    "V": {
+      "min": 25.36,
+      "max": 81.56
+    },
+    "AP": {
+      "min": 992.89,
+      "max": 1033.3
+    },
+    "RH": {
+      "min": 25.56,
+      "max": 100.16
+    }
+  },
+  "humidity_above_100_count": 55,
+  "humidity_policy": "Preserve measured UCI RH values up to 100.16%; no clipping and no removal for RH > 100%",
+  "duplicate_feature_rows_after_deduplication": 0,
+  "split_counts": {
+    "train": 5715,
+    "validation": 1906,
+    "test": 1906
+  },
+  "split_sha256": "4269ee87302a047f28c54907e398bcdef664f4c1164e4e0f2ed6620aa11601b0",
+  "data_sha256": "344cd01ff03857b348e7720b375909fdd144e353e600a65fd8df1d018f7712ad",
+  "units": {
+    "AT": "degC",
+    "V": "cm Hg",
+    "AP": "mbar",
+    "RH": "%",
+    "PE": "MW",
+    "MAE": "MW",
+    "RMSE": "MW",
+    "R2": "dimensionless"
+  },
+  "seed": 42,
+  "limitations": "No timestamps or plant IDs: random group split estimates interpolation in this dataset, not forecasting future operating regimes. No causal interpretation."
+}

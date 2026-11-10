@@ -3,7 +3,7 @@
 Сохраняйте реальные снимки выполненных этапов в эту папку:
 
 01-environment.png — Ubuntu, ARM64, Python, Docker и Compose.
-02-install.png — pip check и успешные тесты (17 passed в исправленной версии).
+02-install.png — pip check и 14 passed.
 03-data.png — одна таблица, дубли, разбиение, единицы.
 04-mlflow-runs.png — шесть запусков, параметры и validation MAE.
 05-registry.png — две версии и champion.

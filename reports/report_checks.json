@@ -1,0 +1,12 @@
+{
+  "scope": "Report preparation checks; original experiments ran on Ubuntu ARM64",
+  "checked_at_utc": "2026-11-10T15:50:04.990112+00:00",
+  "artifact_checks_passed": 50,
+  "unit_tests_passed": 25,
+  "unit_tests_failed": 0,
+  "notebook_code_cells_executed": 14,
+  "notebook_cell_errors": 0,
+  "html_decoded_images": 16,
+  "original_screenshots": 14,
+  "new_training_or_docker_measurements_used": false
+}

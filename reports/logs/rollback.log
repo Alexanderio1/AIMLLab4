@@ -1,0 +1,46 @@
+
+=== rollback — 2026-11-10T22:08:57+07:00 ===
+Client: Docker Engine - Community
+ Version:           29.9.3
+ API version:       1.56
+ Go version:        go1.26.10
+ Git commit:        5457199
+ Built:             Tue Nov  3 21:40:53 2026
+ OS/Arch:           linux/arm64
+ Context:           default
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          29.9.3
+  API version:      1.56 (minimum version 1.40)
+  Go version:       go1.26.10
+  Git commit:       70efc0e
+  Built:            Tue Nov  3 21:40:53 2026
+  OS/Arch:          linux/arm64
+  Experimental:     false
+ containerd:
+  Version:          v2.4.2
+  GitCommit:        b7a25261e029d68978bbf290df0a62fc819b3c51
+ runc:
+  Version:          1.5.2
+  GitCommit:        v1.5.2-0-g29dd3dc2
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+Docker Compose version v5.7.0
+MLflow ready: http://127.0.0.1:5000
+champion -> 1
+ccpp-lab17-api
+2370f027a7449be8afc25c2c56b5d928bd7672a3fcad3c127adff8d439b3a56f
+API CHECK: rollback version 1
+POST /predict request: {"instances": [{"AT": 15.89, "V": 43.96, "AP": 1014.02, "RH": 75.24}, {"AT": 11.04, "V": 41.74, "AP": 1022.6, "RH": 77.51}, {"AT": 17.76, "V": 42.42, "AP": 1009.09, "RH": 66.26}]}
+POST /predict 200: {"model_version": "1", "predictions_MW": [463.9558846040177, 474.2707820390424, 461.7052426690186], "unit": "MW"}
+API == exported model; max difference (MW): 0.0
+Invalid requests: empty_batch=422, missing_feature=422, numeric_string=422, extra_feature=422, invalid_humidity=422, wrong_body=422, too_many_rows=422, nonfinite_input=422
+ALL API CHECKS PASSED
+DOCKER HEALTHCHECK: healthy (ccpp-lab17-api)
+CONTAINER ID   IMAGE         COMMAND                  CREATED         STATUS                   PORTS                      NAMES
+2370f027a744   ccpp-api:v1   "python -m uvicorn a…"   6 seconds ago   Up 5 seconds (healthy)   127.0.0.1:8000->8000/tcp   ccpp-lab17-api
+{"container_id":"2370f027a7449be8afc25c2c56b5d928bd7672a3fcad3c127adff8d439b3a56f","image_id":"sha256:5ad83f412ed49351b1c4fc9e0c0e137041782b93e925b4b6b2bc09fdaa95bbbd","image_tag":"ccpp-api:v1","health":"healthy"}
+
+ЭТАП rollback ЗАВЕРШЁН УСПЕШНО

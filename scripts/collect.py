@@ -1,5 +1,6 @@
 """Bundle allowlisted report evidence. Never include venv, credentials or Docker storage."""
 import hashlib
+import sys
 import json
 import tarfile
 import zipfile
@@ -7,6 +8,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / "src"))
+from evidence import prediction_responses_match
 checks = {}
 for phase in ["v1", "v2", "rollback", "compose"]:
     path = ROOT / f"reports/api_{phase}.json"
@@ -21,8 +24,8 @@ if checks["registry.json"]:
     checks["two_versions"] = len({v["model_version"] for v in d["versions"].values()}) >= 2
 if all(checks.get(k) for k in ["v1", "v2", "rollback", "compose"]):
     d = {k: json.loads((ROOT / f"reports/api_{k}.json").read_text()) for k in ["v1", "v2", "rollback", "compose"]}
-    checks["rollback_verified"] = d["v1"]["model_version"] == d["rollback"]["model_version"] and d["v1"]["valid_response"] == d["rollback"]["valid_response"]
-    checks["update_verified"] = d["v1"]["model_version"] != d["v2"]["model_version"] and d["v2"]["valid_response"] == d["compose"]["valid_response"]
+    checks["rollback_verified"] = d["v1"]["model_version"] == d["rollback"]["model_version"] and prediction_responses_match(d["v1"]["valid_response"], d["rollback"]["valid_response"])
+    checks["update_verified"] = d["v1"]["model_version"] != d["v2"]["model_version"] and prediction_responses_match(d["v2"]["valid_response"], d["compose"]["valid_response"])
     checks["rollback_hash_unchanged"] = d["v1"]["model_sha256"] == d["rollback"]["model_sha256"]
 if (ROOT / "reports/container_v1.json").exists() and (ROOT / "reports/container_rollback.json").exists():
     old = json.loads((ROOT / "reports/container_v1.json").read_text())

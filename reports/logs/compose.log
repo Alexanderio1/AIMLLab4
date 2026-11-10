@@ -1,0 +1,55 @@
+
+=== compose — 2026-11-10T22:09:43+07:00 ===
+Client: Docker Engine - Community
+ Version:           29.9.3
+ API version:       1.56
+ Go version:        go1.26.10
+ Git commit:        5457199
+ Built:             Tue Nov  3 21:40:53 2026
+ OS/Arch:           linux/arm64
+ Context:           default
+
+Server: Docker Engine - Community
+ Engine:
+  Version:          29.9.3
+  API version:      1.56 (minimum version 1.40)
+  Go version:       go1.26.10
+  Git commit:       70efc0e
+  Built:            Tue Nov  3 21:40:53 2026
+  OS/Arch:          linux/arm64
+  Experimental:     false
+ containerd:
+  Version:          v2.4.2
+  GitCommit:        b7a25261e029d68978bbf290df0a62fc819b3c51
+ runc:
+  Version:          1.5.2
+  GitCommit:        v1.5.2-0-g29dd3dc2
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        de40ad0
+Docker Compose version v5.7.0
+MLflow ready: http://127.0.0.1:5000
+champion -> 2
+ccpp-lab17-api
+ Network ccpp-lab17_default Creating 
+ Network ccpp-lab17_default Creating 
+ Network ccpp-lab17_default Created 
+ Network ccpp-lab17_default Created 
+ Container ccpp-lab17-api-1 Creating 
+ Container ccpp-lab17-api-1 Created 
+ Container ccpp-lab17-api-1 Starting 
+ Container ccpp-lab17-api-1 Started 
+ Container ccpp-lab17-api-1 Waiting 
+ Container ccpp-lab17-api-1 Healthy 
+API CHECK: compose version 2
+POST /predict request: {"instances": [{"AT": 15.89, "V": 43.96, "AP": 1014.02, "RH": 75.24}, {"AT": 11.04, "V": 41.74, "AP": 1022.6, "RH": 77.51}, {"AT": 17.76, "V": 42.42, "AP": 1009.09, "RH": 66.26}]}
+POST /predict 200: {"model_version": "2", "predictions_MW": [465.6535200000009, 475.09424000000064, 461.40476000000046], "unit": "MW"}
+API == exported model; max difference (MW): 5.684341886080802e-14
+Invalid requests: empty_batch=422, missing_feature=422, numeric_string=422, extra_feature=422, invalid_humidity=422, wrong_body=422, too_many_rows=422, nonfinite_input=422
+ALL API CHECKS PASSED
+NAME               IMAGE         COMMAND                  SERVICE   CREATED         STATUS                   PORTS
+ccpp-lab17-api-1   ccpp-api:v2   "python -m uvicorn a…"   api       8 seconds ago   Up 7 seconds (healthy)   127.0.0.1:8000->8000/tcp
+DOCKER HEALTHCHECK: healthy (19328372b12f9c9aea914b39f3e0056e1d3c8acba4466c5c2bd704683381f720)
+{"container_id":"19328372b12f9c9aea914b39f3e0056e1d3c8acba4466c5c2bd704683381f720","image_id":"sha256:e58f35cdca769d8147a61f5c9fcd7fe1ba4d7ca6ad7aa67c07f37681fecebb9b","image_tag":"ccpp-api:v2","health":"healthy"}
+
+ЭТАП compose ЗАВЕРШЁН УСПЕШНО

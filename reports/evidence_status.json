@@ -1,0 +1,27 @@
+{
+  "collected_at_utc": "2026-11-10T15:18:03.989048+00:00",
+  "checks": {
+    "v1": true,
+    "v2": true,
+    "rollback": true,
+    "compose": true,
+    "experiments.csv": true,
+    "registry.json": true,
+    "test_metrics.json": true,
+    "data_audit.json": true,
+    "environment.json": true,
+    "six_experiments": true,
+    "two_versions": true,
+    "rollback_verified": true,
+    "update_verified": false,
+    "rollback_hash_unchanged": true,
+    "rollback_image_unchanged": true,
+    "docker_health_v1": true,
+    "docker_health_v2": true,
+    "docker_health_rollback": true,
+    "docker_health_compose": true,
+    "screenshots_present": true
+  },
+  "all_checks_passed": false,
+  "note": "Screenshot count does not establish their content. Inspect screenshots manually against README checklist."
+}

@@ -1,0 +1,37 @@
+{
+  "model_name": "ccpp-power",
+  "alias": "champion",
+  "versions": {
+    "baseline": {
+      "name": "ridge-a0.1",
+      "algorithm": "Ridge",
+      "parameters": {
+        "alpha": 0.1
+      },
+      "val_mae": 3.644304967233673,
+      "val_rmse": 4.615726539763125,
+      "val_r2": 0.9263430845425782,
+      "fit_seconds": 0.0023465829999622656,
+      "run_id": "22d806e000234fa38084837219197507",
+      "model_uri": "models:/m-ed27e4110ed647dcb8efcaf00f7bbe8e",
+      "model_version": "1"
+    },
+    "selected": {
+      "name": "rf-unlimited",
+      "algorithm": "RandomForestRegressor",
+      "parameters": {
+        "n_estimators": 250,
+        "max_depth": null,
+        "min_samples_leaf": 1
+      },
+      "val_mae": 2.472198132214059,
+      "val_rmse": 3.5059217543039494,
+      "val_r2": 0.9575050009047676,
+      "fit_seconds": 1.850220251000792,
+      "run_id": "503b388935b047bca0fa775e9603e454",
+      "model_uri": "models:/m-7a02a502abe74b62b1bd4704453e6475",
+      "model_version": "2"
+    }
+  },
+  "selection_rule": "Minimum validation MAE; baseline is best configuration of the other algorithm. Test excluded from selection."
+}

@@ -1,0 +1,28 @@
+{
+  "model_name": "ccpp-power",
+  "model_version": "1",
+  "run_id": "22d806e000234fa38084837219197507",
+  "algorithm": "Ridge",
+  "parameters": {
+    "alpha": 0.1
+  },
+  "model_sha256": "b919f6c15cafc8cd02a217d6c66d781524dc80786e6b56cec178307ba3d25119",
+  "features": [
+    "AT",
+    "V",
+    "AP",
+    "RH"
+  ],
+  "target": "PE",
+  "units": {
+    "AT": "degC",
+    "V": "cm Hg",
+    "AP": "mbar",
+    "RH": "%",
+    "PE": "MW",
+    "MAE": "MW",
+    "RMSE": "MW",
+    "R2": "dimensionless"
+  },
+  "validation_mae_MW": 3.644304967233673
+}
