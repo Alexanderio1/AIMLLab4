@@ -20,7 +20,7 @@ class Instance(BaseModel):
     AT: float = Field(description="Ambient temperature, degrees Celsius")
     V: float = Field(gt=0, description="Exhaust vacuum, cm Hg")
     AP: float = Field(gt=0, description="Ambient pressure, millibar")
-    RH: float = Field(ge=0, le=100, description="Relative humidity, percent")
+    RH: float = Field(ge=0, le=100.16, description="Relative humidity, percent; UCI measured values extend to 100.16")
 
 
 class PredictionRequest(BaseModel):

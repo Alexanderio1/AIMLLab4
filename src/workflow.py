@@ -102,8 +102,12 @@ def prepare():
         raise RuntimeError(f"UCI first sheet should have 9568 rows, got {len(original)}. Check source.")
     if original.isna().any().any() or not np.isfinite(original.to_numpy(dtype=float)).all():
         raise RuntimeError("Missing or nonfinite data: investigate instead of silently deleting")
-    if not ((original.RH >= 0) & (original.RH <= 100) & (original.AP > 0) & (original.V > 0)).all():
-        raise RuntimeError("Source values violate documented input constraints")
+    # UCI CCPP contains measured RH values up to 100.16%. Preserve these
+    # observations; a theoretical 100% cutoff would reject the source dataset.
+    valid = (original.RH >= 0) & (original.RH <= 100.16) & (original.AP > 0) & (original.V > 0)
+    if not valid.all():
+        examples = original.loc[~valid, FEATURES].head(5).to_dict(orient="records")
+        raise RuntimeError(f"Source values violate input constraints (RH 0..100.16%, AP > 0, V > 0): {examples}")
     clean = original.drop_duplicates().copy()
     clean.insert(0, "row_id", clean.index.astype(int))
     clean = clean.reset_index(drop=True)
@@ -121,6 +125,9 @@ def prepare():
         "selected_sheet": selected_sheet, "sheet_policy": "Only the first sheet is used; other sheets are not concatenated",
         "original_rows": len(original), "rows_after_deduplication": len(clean),
         "exact_duplicates_removed": len(original) - len(clean),
+        "feature_ranges": {key: {"min": float(original[key].min()), "max": float(original[key].max())} for key in FEATURES},
+        "humidity_above_100_count": int((original.RH > 100).sum()),
+        "humidity_policy": "Preserve measured UCI RH values up to 100.16%; no clipping and no removal for RH > 100%",
         "duplicate_feature_rows_after_deduplication": int(clean.duplicated(FEATURES).sum()),
         "split_counts": {key: len(pos) for key, pos in indices.items()},
         "split_sha256": sha("data/split.json"), "data_sha256": sha("data/processed/data.csv"),

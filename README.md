@@ -100,6 +100,21 @@ bash scripts/run.sh experiments
 validation, test. Индексы исходных строк, CSV, SHA-256 и seed сохраняются.
 Остальные листы не объединяются и не используются.
 
+В исходном CCPP встречается измеренная RH до **100.16%**. Эти значения
+сохраняются без обрезки и удаления. Аудит записывает фактические диапазоны
+признаков и число строк с RH выше 100%. API принимает RH от 0 до 100.16%.
+Если ранний комплект остановился с `Source values violate documented input
+constraints`, выполните из папки проекта:
+
+```bash
+curl -fL https://raw.githubusercontent.com/Alexanderio1/AIMLLab4/main/scripts/update_humidity_fix.sh -o /tmp/aimllab4-update-rh.sh
+bash /tmp/aimllab4-update-rh.sh
+bash scripts/run.sh experiments
+```
+
+Обновление сохраняет резервные копии изменяемых исходников в `reports/`.
+Повторный запуск использует уже скачанный архив данных и существующий MLflow.
+
 Если автоматическая загрузка недоступна, скачайте ZIP кнопкой Download на
 странице UCI, сохраните его **без распаковки** как `data/raw/ccpp.zip` и повторите
 команду. Не используйте CSV неизвестного происхождения:
@@ -212,7 +227,7 @@ Champion снова указывает на selected. `compose up --wait` и о�
 Ответ содержит `model_version`, `predictions_MW`, `unit: "MW"`.
 Каждый объект содержит ровно AT, V, AP, RH; от 1 до 1000 строк в запросе.
 Все значения — конечные JSON-числа (не строки/булевы), V и AP положительны,
-RH от 0 до 100. AT — °C, V — cm Hg, AP — mbar, RH — %, PE — MW.
+RH от 0 до 100.16 (с учётом измерений CCPP). AT — °C, V — cm Hg, AP — mbar, RH — %, PE — MW.
 Эти проверки не заменяют анализ сдвига распределения за пределами датасета.
 
 Дополнительный ручной запрос:

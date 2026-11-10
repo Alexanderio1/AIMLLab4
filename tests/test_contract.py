@@ -35,6 +35,16 @@ def test_api_predicts_exported_pipeline(exported):
         np.testing.assert_allclose(r.json()["predictions_MW"], model.predict(frame), rtol=1e-10, atol=1e-9)
 
 
+@pytest.mark.parametrize("humidity", [100.0, 100.16])
+def test_api_accepts_uci_humidity_boundary(exported, humidity):
+    frame, _, _ = exported
+    row = {**frame.iloc[0].to_dict(), "RH": humidity}
+    with TestClient(app) as client:
+        response = client.post("/predict", json={"instances": [row]})
+        assert response.status_code == 200
+        assert np.isfinite(response.json()["predictions_MW"]).all()
+
+
 @pytest.mark.parametrize("override", [
     {"AT": "20"}, {"RH": 101.}, {"AP": -1.}, {"V": 0.}, {"PE": 450.}, {"AT": None}, {"RH": True},
 ])
@@ -81,3 +91,34 @@ def test_duplicate_feature_vectors_do_not_leak():
     assert sorted(np.concatenate(list(splits.values()))) == list(range(len(frame)))
     for name in splits:
         np.testing.assert_array_equal(splits[name], split_frame(frame)[name])
+
+
+def test_prepare_preserves_measured_humidity_above_100(tmp_path, monkeypatch):
+    import zipfile
+    import workflow
+
+    rng = np.random.default_rng(17)
+    count = 9568
+    frame = pd.DataFrame({
+        "AT": rng.uniform(5, 35, count), "V": rng.uniform(25, 80, count),
+        "AP": rng.uniform(990, 1030, count), "RH": rng.uniform(25, 100, count),
+        "PE": rng.uniform(420, 490, count),
+    })
+    frame.loc[0, "RH"] = 100.16
+    frame.loc[1, "RH"] = 100.01
+    raw = tmp_path / "data/raw"
+    raw.mkdir(parents=True)
+    workbook = raw / "Folds5x2_pp.xlsx"
+    frame.to_excel(workbook, index=False)
+    with zipfile.ZipFile(raw / "ccpp.zip", "w") as z:
+        z.write(workbook, "CCPP/Folds5x2_pp.xlsx")
+    monkeypatch.setattr(workflow, "ROOT", tmp_path)
+    monkeypatch.chdir(tmp_path)
+    workflow.prepare()
+    audit = json.loads((tmp_path / "reports/data_audit.json").read_text())
+    clean = pd.read_csv(tmp_path / "data/processed/data.csv")
+    assert audit["humidity_above_100_count"] == 2
+    assert audit["feature_ranges"]["RH"]["max"] == 100.16
+    assert len(clean) == count
+    assert clean.loc[clean.row_id == 0, "RH"].iloc[0] == 100.16
+    assert clean.loc[clean.row_id == 1, "RH"].iloc[0] == 100.01
