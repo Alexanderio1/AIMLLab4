@@ -1,0 +1,2 @@
+# Preserve PDF bytes and cross-reference offsets on every checkout platform.
+*.pdf binary
