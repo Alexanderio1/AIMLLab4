@@ -1,0 +1,6 @@
+*
+!requirements-runtime.lock.txt
+!src/
+!src/app.py
+!exported_models/
+!exported_models/**
