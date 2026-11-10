@@ -4,6 +4,9 @@
 Работа выполнена **10.11.2026 на Ubuntu 22.04.5 ARM64**, Python 3.12.14,
 MLflow 3.5.0, scikit-learn 1.7.2, Docker 29.9.3 и Compose v5.7.0.
 
+- **[answers_lab4.pdf](answers_lab4.pdf)** — подробные ответы на все **49 вопросов
+  к защите**: 29 по отчёту и 20 по теории, с командами, содержанием и примерами
+  из проекта. [Исходный текст](answers_lab4.md).
 - **[lab4.ipynb](lab4.ipynb)** — выполненный notebook с таблицами, кодом,
   пояснениями и 14 оригинальными скриншотами Ubuntu, по образцу первой лабораторной.
 - **[report.md](report.md)** — полный отчёт для чтения прямо на GitHub.
@@ -95,3 +98,16 @@ float используется численный допуск, побитова
 
 Источник: [UCI CCPP](https://archive.ics.uci.edu/dataset/294/combined+cycle+power+plant),
 [DOI 10.24432/C5002N](https://doi.org/10.24432/C5002N). Полный список источников — в отчёте.
+
+## Пересборка PDF с ответами
+
+Для PDF нужны ReportLab и шрифты DejaVu (пакет Ubuntu `fonts-dejavu-core`).
+Генерация не запускает обучение и не изменяет исходные результаты:
+
+```bash
+.venv/bin/python -m pip install -r requirements-defense.txt
+.venv/bin/python scripts/build_defense_pdf.py
+```
+
+PDF содержит встроенные кириллические шрифты, оглавление с переходами и закладки.
+Длинные команды удобнее копировать из [answers_lab4.md](answers_lab4.md).

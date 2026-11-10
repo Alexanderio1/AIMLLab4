@@ -1,0 +1,17 @@
+{
+  "document": "answers_lab4.pdf",
+  "pages": 35,
+  "practical_questions": 29,
+  "theory_questions": 20,
+  "question_bookmarks": 49,
+  "question_labels_verified_in_body": true,
+  "text_spans_outside_margins": 0,
+  "cyrillic_and_formula_glyphs_supported": true,
+  "python_snippets_syntax_checked": 9,
+  "bash_blocks_syntax_checked": 32,
+  "source_sha256": "b6d0170e35f1daff6916a763cb7dbb89619322b6901009ae24735de7c47b808e",
+  "pdf_sha256": "1ad7e7accd430eec40ef9ee75dc469f2aa6bbfef2d859f2d0c8717e48f30041d",
+  "commands_in_document_executed_against_training_or_services": false,
+  "visual_review": "Cover, contents, code examples and theory tables inspected",
+  "checked_at_utc": "2026-11-10T17:25:37.690684+00:00"
+}
